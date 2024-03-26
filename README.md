@@ -6,7 +6,7 @@ The database includes entities such as Location, Theatre, Movie, Show, and Date.
 
 ## Entities and Attributes
 
-### Location
+### Theatre Location
 - location_id (Primary Key)
 - city
 - area
@@ -14,7 +14,7 @@ The database includes entities such as Location, Theatre, Movie, Show, and Date.
 ### Theatre
 - theatre_id (Primary Key)
 - theatre_name
-- location_id (Foreign Key referencing Movie)
+- location_id (Foreign Key referencing theatre location)
 - capacity
 
 ### Movie
@@ -22,10 +22,10 @@ The database includes entities such as Location, Theatre, Movie, Show, and Date.
 - movie_name
 - movie_language
 - animation
-- certificate
+- certificate_rating
 - duration
 
-### Date
+### Movie Show Date
 - date_id (Primary Key)
 - show_date
 
@@ -33,7 +33,7 @@ The database includes entities such as Location, Theatre, Movie, Show, and Date.
 - show_id (Primary Key)
 - theatre_id (Foreign Key referencing Theatre)
 - movie_id (Foreign Key referencing Movie)
-- date_id (Foreign Key referencing Date)
+- date_id (Foreign Key referencing Movie Show Date)
 - show_time
 
 ## Table Structures
@@ -54,7 +54,7 @@ The following SQL query retrieves all shows on a specific date at a particular t
 SELECT s.show_id, t.theatre_name, l.city, l.area, m.movie_name, s.show_time,
 FROM Show s
 INNER JOIN Theatre t ON s.theatre_id = t.theatre_id
-INNER JOIN Location l ON t.location_id = l.location_id
+INNER JOIN theatreLocation l ON t.location_id = l.location_id
 INNER JOIN Movie m ON s.movie_id = m.movie_id
-INNER JOIN Date d ON s.date_id = d.date_id
+INNER JOIN movieShowDate d ON s.date_id = d.date_id
 WHERE d.show_date = '2024-03-26' AND t.theatre_name = 'PVR' AND l.city = 'Mumbai' AND l.area = 'Colaba';

@@ -1,5 +1,3 @@
-SQL script to create the Show table and insert sample entries.
-
 CREATE TABLE Show (
     show_id INT PRIMARY KEY AUTO_INCREMENT,
     theatre_id INT,
@@ -8,7 +6,7 @@ CREATE TABLE Show (
     show_time TIME,
     FOREIGN KEY (theatre_id) REFERENCES Theatre(theatre_id),
     FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
-    FOREIGN KEY (date_id) REFERENCES Date(date_id)
+    FOREIGN KEY (date_id) REFERENCES movieShowDate(date_id)
 );
 
 INSERT INTO Show (theatre_id, movie_id, date_id, show_time) VALUES
